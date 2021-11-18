@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "spells")
 data class Spell(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int?,
     @ColumnInfo val spell_name: String,
     @ColumnInfo val level: Int,
     @ColumnInfo val school: String,
@@ -16,4 +16,10 @@ data class Spell(
     @ColumnInfo val components: String,
     @ColumnInfo val duration: Int,
     @ColumnInfo val description: String
-)
+){
+    constructor(spell_name: String,level: Int,
+                school: String,cast_time: Int,
+                range: Float,components: String,
+                duration: Int,description: String)
+            :this(null, spell_name, level, school, cast_time, range, components, duration, description)
+}

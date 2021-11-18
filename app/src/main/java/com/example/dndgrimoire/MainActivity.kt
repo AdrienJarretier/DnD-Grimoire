@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         val db = builder.build()
 
         val spellDao = db.spellDao()
+
+
         val spells: List<Spell> = spellDao.getAll()
 
         Log.w("spells count :", spells.size.toString())

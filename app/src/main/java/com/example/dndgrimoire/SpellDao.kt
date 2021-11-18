@@ -19,6 +19,9 @@ interface SpellDao {
         @Insert
         fun insertAll(vararg spells: Spell)
 
+        @Insert
+        fun insert(spell: Spell)
+
         @Delete
         fun delete(spell: Spell)
 }
