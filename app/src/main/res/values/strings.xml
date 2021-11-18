@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">DnD Grimoire</string>
+    <string name="spell_name">Nom du sort</string>
+    <string name="subtitle">niveau %d - %s</string>
+    <string name="magic_school">évocation</string>
+    <string name="cast_time_label">Temps d’incantation : </string>
+    <string name="cast_time_value">1 action</string>
+    <string name="range_label">Portée : </string>
+    <string name="range_value">contact</string>
+    <string name="components_label">Composantes : </string>
+    <string name="components_value">V, S, M (liste de composants matériels)</string>
+    <string name="duration_label">Durée : </string>
+    <string name="duration_value">X heures</string>
+    <string name="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc malesuada lacus ipsum, eu rutrum neque tempor sit amet. Duis convallis arcu ac faucibus dictum. Suspendisse potenti. Integer porta augue erat, mattis scelerisque urna finibus ut. Mauris ut cursus dui, eget hendrerit lacus. Curabitur vitae molestie eros. Ut et tempus tellus.
+        Ac tincidunt quam eleifend.
+        \n\n
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed vitae feugiat magna. Proin sed porta lorem. Vestibulum tristique.
+    </string>
 </resources>
