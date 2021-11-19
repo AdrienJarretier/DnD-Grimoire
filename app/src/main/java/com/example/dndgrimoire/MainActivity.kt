@@ -13,5 +13,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+
+        val spellDao = RoomSingleton.getInstance(applicationContext).spellDao()
+        if(spellDao.isEmpty()) {
+            Log.d("isEmpty", "true")
+            testInsert(spellDao)
+        }else {
+            Log.d("isEmpty", "false")
+        }
     }
 }
