@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/spell_card">
+
+    <fragment
+        android:id="@+id/spell_card"
+        android:name="com.example.dndgrimoire.spell_card"
+        android:label="fragment_spell_card"
+        tools:layout="@layout/fragment_spell_card" >
+        <action
+            android:id="@+id/action_spell_card_to_spells_list"
+            app:destination="@id/spells_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/spells_list"
+        android:name="com.example.dndgrimoire.spells_list"
+        android:label="fragment_spells_list"
+        tools:layout="@layout/fragment_spells_list" />
+</navigation>

@@ -2,7 +2,7 @@
     <string name="app_name">DnD Grimoire</string>
     <string name="spell_name">Nom du sort</string>
     <string name="subtitle">niveau %d - %s</string>
-    <string name="magic_school">évocation</string>
+    <string name="magic_school">école</string>
     <string name="cast_time_label">Temps d’incantation : </string>
     <string name="cast_time_value">1 action</string>
     <string name="range_label">Portée : </string>
@@ -18,6 +18,4 @@
         Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed vitae feugiat magna. Proin sed porta lorem. Vestibulum tristique.
     </string>
     <string name="list_button">Liste</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
