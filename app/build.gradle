@@ -88,3 +88,10 @@ dependencies {
     /*************************************************************************/
 
 }
+
+android.applicationVariants.all {
+    variant ->    variant.outputs.all {
+    def appName = "DndGrimoire"
+        outputFileName = appName+"-${variant.versionName}.apk"
+}
+}
