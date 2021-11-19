@@ -1,6 +1,7 @@
 package com.example.dndgrimoire
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,9 +41,19 @@ class spells_list : Fragment() {
         val rootView : LinearLayout =
             inflater.inflate(R.layout.fragment_spells_list, container, false) as LinearLayout
 
-        val text = TextView(context)
-        text.text = "dynamic"
-        rootView.addView(text)
+        val db = RoomSingleton.getInstance(requireContext())
+
+        val spellDao = db.spellDao()
+
+        val spells: List<Spell> = spellDao.getAll()
+
+        Log.w("spells count :", spells.size.toString())
+        for (spell in spells) {
+            Log.w("spell :", spell.spell_name)
+            val text = TextView(context)
+            text.text = spell.spell_name
+            rootView.addView(text)
+        }
 
         return rootView
     }

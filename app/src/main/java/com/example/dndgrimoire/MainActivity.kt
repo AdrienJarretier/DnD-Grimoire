@@ -13,26 +13,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-
-
-        val builder = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "database-name"
-        )
-        builder.allowMainThreadQueries()
-        val db = builder.build()
-
-        val spellDao = db.spellDao()
-
-
-        val spells: List<Spell> = spellDao.getAll()
-
-        Log.w("spells count :", spells.size.toString())
-        for (spell in spells) {
-            Log.w("spell :", spell.spell_name)
-        }
-
-
-
     }
 }
