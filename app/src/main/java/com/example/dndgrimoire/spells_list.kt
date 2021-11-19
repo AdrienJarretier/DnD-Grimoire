@@ -39,14 +39,15 @@ class spells_list : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val rootView : LinearLayout =
-            inflater.inflate(R.layout.fragment_spells_list, container, false) as LinearLayout
+        val rootView = inflater.inflate(R.layout.fragment_spells_list, container, false)
 
         val db = RoomSingleton.getInstance(requireContext())
 
         val spellDao = db.spellDao()
 
         val spells: List<Spell> = spellDao.getAll().sortedWith(compareBy(Spell::level, Spell::spell_name))
+
+        val linearVertLayout = rootView.findViewById<LinearLayout>(R.id.linearVerticalLayout)
 
         Log.w("spells count :", spells.size.toString())
         for (spell in spells) {
@@ -60,7 +61,7 @@ class spells_list : Fragment() {
                 findNavController().navigate(action)
 
             }
-            rootView.addView(text)
+            linearVertLayout.addView(text)
         }
 
         return rootView
