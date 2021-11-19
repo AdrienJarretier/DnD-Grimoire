@@ -46,13 +46,14 @@ class spells_list : Fragment() {
 
         val spellDao = db.spellDao()
 
-        val spells: List<Spell> = spellDao.getAll()
+        val spells: List<Spell> = spellDao.getAll().sortedWith(compareBy(Spell::level, Spell::spell_name))
 
         Log.w("spells count :", spells.size.toString())
         for (spell in spells) {
             Log.w("spell :", spell.spell_name)
             val text = TextView(context)
             text.text = spell.spell_name
+            text.height = 90
             text.setOnClickListener{
 
                 val action = spells_listDirections.actionSpellsListToSpellCard(spell.id!!)
