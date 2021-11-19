@@ -10,6 +10,9 @@ interface SpellDao {
         @Query("SELECT * FROM spells")
         fun getAll(): List<Spell>
 
+        @Query("SELECT * FROM spells WHERE id= :id")
+        fun get(id: Int): Spell
+
         @Query("SELECT * FROM spells WHERE id IN (:spellIds)")
         fun loadAllByIds(spellIds: IntArray): List<Spell>
 

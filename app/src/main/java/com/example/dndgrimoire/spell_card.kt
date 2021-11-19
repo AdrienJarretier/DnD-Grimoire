@@ -1,6 +1,8 @@
 package com.example.dndgrimoire
 
+import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,38 +51,43 @@ class spell_card : Fragment() {
 
         }
 
-        val subtitle = getString(R.string.subtitle)
-        val levelValue = resources.getInteger(R.integer.level_value)
-        val magicSchool = getString(R.string.magic_school)
-        val subtitleTextView = rootView.findViewById<TextView>(R.id.subtitle)
-        subtitleTextView.text = String.format(subtitle, levelValue, magicSchool)
-
         return rootView
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//
-//
-//
-//        val navController = findNavController()
-//
-//        val button = view.findViewById<Button>(R.id.list_button)
-//        button.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Fragment fragment = new tasks();
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.content_frame, fragment);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
-//            }
-//        });
-//
-//
-//    }
+        val args: spell_cardArgs by navArgs()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val spellId = args.spellId
+
+        Log.d("spellId", spellId.toString())
+
+        val db = RoomSingleton.getInstance(requireContext())
+        val spellDao = db.spellDao()
+
+        val spell = spellDao.get(spellId)
+
+
+        view.findViewById<TextView>(R.id.spellName).text = spell.spell_name
+
+        val subtitle = getString(R.string.subtitle)
+        val levelValue = spell.level
+        val magicSchool = spell.school
+        val subtitleTextView = view.findViewById<TextView>(R.id.subtitle)
+        subtitleTextView.text = String.format(subtitle, levelValue, magicSchool)
+
+        view.findViewById<TextView>(R.id.castTimeValue).text = spell.cast_time
+
+        view.findViewById<TextView>(R.id.rangeValue).text = spell.range
+
+        view.findViewById<TextView>(R.id.componentsValue).text = spell.components
+
+        view.findViewById<TextView>(R.id.durationValue).text = spell.duration
+
+        val descriptionTextView = view.findViewById<TextView>(R.id.description)
+        descriptionTextView.text = spell.description
+        descriptionTextView.typeface = Typeface.SANS_SERIF
+    }
 
     companion object {
         /**

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,6 +53,12 @@ class spells_list : Fragment() {
             Log.w("spell :", spell.spell_name)
             val text = TextView(context)
             text.text = spell.spell_name
+            text.setOnClickListener{
+
+                val action = spells_listDirections.actionSpellsListToSpellCard(spell.id!!)
+                findNavController().navigate(action)
+
+            }
             rootView.addView(text)
         }
 

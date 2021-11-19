@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_spell_card_to_spells_list"
             app:destination="@id/spells_list" />
+        <argument
+            android:name="spellId"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
     <fragment
         android:id="@+id/spells_list"
         android:name="com.example.dndgrimoire.spells_list"
         android:label="fragment_spells_list"
-        tools:layout="@layout/fragment_spells_list" />
+        tools:layout="@layout/fragment_spells_list" >
+        <action
+            android:id="@+id/action_spells_list_to_spell_card"
+            app:destination="@id/spell_card" />
+    </fragment>
 </navigation>
