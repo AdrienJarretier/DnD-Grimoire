@@ -23,12 +23,13 @@ android {
 
     defaultConfig {
         applicationId "com.example.dndgrimoire"
-        minSdk 27
         targetSdk 31
         versionCode 1
-        versionName "1.0.4"
+        versionName "1.0.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdk 25
+        minSdkVersion 25
     }
 
     buildTypes {

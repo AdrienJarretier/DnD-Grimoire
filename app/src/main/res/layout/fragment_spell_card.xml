@@ -39,7 +39,6 @@
                         android:id="@+id/spellName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif"
                         android:text="@string/spell_name"
                         android:textAllCaps="false"
                         android:textColor="#94353B"
