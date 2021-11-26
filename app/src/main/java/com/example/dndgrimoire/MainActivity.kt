@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
-import androidx.room.Room
+
+import testInsert.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val spellDao = RoomSingleton.getInstance(applicationContext).spellDao()
         if(spellDao.isEmpty()) {
             Log.d("isEmpty", "true")
-            testInsert(spellDao)
+            TestInsert2.testInsert(spellDao)
         }else {
             Log.d("isEmpty", "false")
         }

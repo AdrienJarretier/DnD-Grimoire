@@ -57,7 +57,7 @@ class spells_list : Fragment() {
             text.height = 90
             text.setOnClickListener{
 
-                val action = spells_listDirections.actionSpellsListToSpellCard(spell.id!!)
+                val action = spells_listDirections.actionSpellsListToSpellCard(spell.spellId!!)
                 findNavController().navigate(action)
 
             }

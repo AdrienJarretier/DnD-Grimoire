@@ -3,7 +3,10 @@ package com.example.dndgrimoire
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [Spell::class], version = 1)
+const val DATABASE_VERSION = 2
+
+@Database(entities = [Spell::class, PlayerClass::class, SpellPlayerClass::class],
+    version = DATABASE_VERSION)
 abstract class RoomSingleton : RoomDatabase(){
     abstract fun spellDao():SpellDao
 
@@ -18,6 +21,7 @@ abstract class RoomSingleton : RoomDatabase(){
                     "roomdb")
 
                 builder.allowMainThreadQueries()
+                builder.fallbackToDestructiveMigration()
 
                 INSTANCE = builder.build()
             }

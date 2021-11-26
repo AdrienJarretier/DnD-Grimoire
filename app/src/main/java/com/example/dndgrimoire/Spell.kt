@@ -4,10 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity(tableName = "spells")
 data class Spell(
-    @PrimaryKey(autoGenerate = true) val id: Int?,
+    @PrimaryKey(autoGenerate = true) val spellId: Int?,
     @ColumnInfo val spell_name: String,
     @ColumnInfo val level: Int,
     @ColumnInfo val school: String,
