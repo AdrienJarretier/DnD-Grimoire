@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.example.dndgrimoire.strings.*
 
 @Entity(tableName = "spells", indices = [Index(value = ["spell_name"],
     unique = true)])
@@ -22,5 +23,6 @@ data class Spell(
                 school: String,cast_time: String,
                 range: String,components: String,
                 duration: String,description: String)
-            :this(null, spell_name, level, school, cast_time, range, components, duration, description)
+            :this(null, capitalize(spell_name), level, school, cast_time, range, components, duration, description)
+
 }
