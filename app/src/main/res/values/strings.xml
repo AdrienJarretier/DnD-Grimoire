@@ -18,4 +18,7 @@
         Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed vitae feugiat magna. Proin sed porta lorem. Vestibulum tristique.
     </string>
     <string name="list_button">Liste</string>
+    <string name="playerCharacter_name_label">Nom</string>
+    <string name="playerCharacter_class_label">Classe</string>
+    <string name="playerCharacter_level_label">Niveau</string>
 </resources>
