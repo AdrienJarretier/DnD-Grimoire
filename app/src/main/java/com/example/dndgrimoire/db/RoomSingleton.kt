@@ -3,7 +3,7 @@ package com.example.dndgrimoire.db
 import android.content.Context
 import androidx.room.*
 
-const val DATABASE_VERSION = 2
+const val DATABASE_VERSION = 3
 
 @Database(entities = [Spell::class, PlayerClass::class, SpellPlayerClass::class],
     version = DATABASE_VERSION

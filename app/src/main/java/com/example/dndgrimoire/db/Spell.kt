@@ -2,9 +2,11 @@ package com.example.dndgrimoire.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "spells")
+@Entity(tableName = "spells", indices = [Index(value = ["spell_name"],
+    unique = true)])
 data class Spell(
     @PrimaryKey(autoGenerate = true) val spellId: Int?,
     @ColumnInfo val spell_name: String,

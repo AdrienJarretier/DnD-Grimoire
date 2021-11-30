@@ -1,5 +1,7 @@
 package com.example.dndgrimoire
 
+import android.app.AlertDialog
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -8,6 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.dndgrimoire.db.RoomSingleton
 
 import testInsert.*
+import android.content.DialogInterface
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +25,20 @@ class MainActivity : AppCompatActivity() {
         val spellDao = RoomSingleton.getInstance(applicationContext).spellDao()
         if(spellDao.isEmpty()) {
             Log.d("isEmpty", "true")
-            TestInsert2.testInsert(spellDao)
+
+            try {
+                TestInsert2.testInsert(spellDao)
+            }catch (e: SQLiteConstraintException) {
+
+                val alertDialog: AlertDialog = AlertDialog.Builder(this).create()
+                alertDialog.setTitle("Error")
+                alertDialog.setMessage(e.localizedMessage)
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    DialogInterface.OnClickListener { dialog, _ -> dialog.dismiss() })
+                alertDialog.show()
+                RoomSingleton.getInstance(applicationContext).clearAllTables()
+            }
+
         }else {
             Log.d("isEmpty", "false")
         }
