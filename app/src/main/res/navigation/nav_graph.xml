@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/plyaerSheet">
+    app:startDestination="@id/playerSheet">
 
     <fragment
         android:id="@+id/spell_card"
@@ -28,8 +28,8 @@
             app:destination="@id/spell_card" />
     </fragment>
     <fragment
-        android:id="@+id/plyaerSheet"
-        android:name="com.example.dndgrimoire.PlyaerSheet"
+        android:id="@+id/playerSheet"
+        android:name="com.example.dndgrimoire.PlayerSheet"
         android:label="fragment_player_sheet"
         tools:layout="@layout/fragment_player_sheet" />
 </navigation>

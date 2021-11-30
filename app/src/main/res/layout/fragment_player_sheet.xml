@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlyaerSheet">
+    tools:context=".PlayerSheet">
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -44,7 +44,6 @@
         android:layout_marginTop="16dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/playerCharacter_level_label"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
