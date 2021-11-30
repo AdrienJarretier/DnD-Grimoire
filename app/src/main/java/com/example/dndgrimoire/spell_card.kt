@@ -65,7 +65,7 @@ class spell_card : Fragment() {
         val db = RoomSingleton.getInstance(requireContext())
         val spellDao = db.spellDao()
 
-        val spell = spellDao.get(spellId)
+        val spell = spellDao.getSpell(spellId)
 
 
         view.findViewById<TextView>(R.id.spellName).text = spell.spell_name

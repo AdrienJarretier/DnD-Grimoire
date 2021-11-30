@@ -1,10 +1,6 @@
 package com.example.dndgrimoire.db
 
 import androidx.room.*
-import com.example.dndgrimoire.db.PlayerClass
-import com.example.dndgrimoire.db.PlayerClassWithSpells
-import com.example.dndgrimoire.db.Spell
-import com.example.dndgrimoire.db.SpellPlayerClass
 
 @Dao
 interface SpellDao {
@@ -12,31 +8,57 @@ interface SpellDao {
         fun getAll(): List<Spell>
 
         @Query("SELECT * FROM spells WHERE spellId= :id")
-        fun get(id: Int): Spell
+        fun getSpell(id: Int): Spell
+
+        @Query("SELECT * FROM player_classes WHERE playerClassId= :id")
+        fun getPlayerClass(id: Int): PlayerClass
 
         @Query("SELECT count(*)==0 FROM spells")
         fun isEmpty(): Boolean
 
-        @Query("SELECT * FROM spells WHERE spellId IN (:spellIds)")
-        fun loadAllByIds(spellIds: IntArray): List<Spell>
+//        @Query("SELECT * FROM spells WHERE spellId IN (:spellIds)")
+//        fun loadAllByIds(spellIds: IntArray): List<Spell>
 
         @Query("SELECT * FROM spells WHERE spell_name LIKE :name LIMIT 1")
-        fun findByName(name: String): Spell
+        fun findSpellByName(name: String): Spell
 
-        @Transaction
-        @Query("SELECT * FROM player_classes")
-        fun getPlayerClassesWithSpells(): List<PlayerClassWithSpells>
+        @Query("SELECT * FROM player_classes WHERE name LIKE :name LIMIT 1")
+        fun findPlayerClassByName(name: String): PlayerClass
+//
+//        @Transaction
+//        @Query("SELECT * FROM player_classes")
+//        fun getPlayerClassesWithSpells(): List<PlayerClassWithSpells>
 
         @Insert
         fun insertAll(vararg spells: Spell)
-        @Insert
-        fun insertAll(vararg playerClasses: PlayerClass)
-        @Insert
-        fun insertAll(vararg spells_playerClasses: SpellPlayerClass)
+//        @Insert
+//        fun insertAll(vararg playerClasses: PlayerClass)
+//        @Insert
+//        fun insertAll(vararg spells_playerClasses: SpellPlayerClass)
 
         @Insert
-        fun insert(spell: Spell)
+        fun insert(spell: Spell) : Long
+        @Insert
+        fun insert(playerClass: PlayerClass) : Long
+        @Insert
+        fun insert(spells_playerClasses: SpellPlayerClass)
 
-        @Delete
-        fun delete(spell: Spell)
+        fun insert(playerClassName: String, spellsNames: List<String>) {
+
+                var playerClass = findPlayerClassByName(playerClassName)
+                if(playerClass == null) {
+                        playerClass = getPlayerClass(insert(PlayerClass(playerClassName)).toInt())
+                }
+                for(spellName in spellsNames) {
+
+                        var spell = findSpellByName(spellName)
+                        if(spell == null) {
+                                spell = getSpell(insert(Spell(spellName)).toInt())
+                        }
+                        insert(SpellPlayerClass(spell.spellId!!, playerClass.playerClassId!!))
+                }
+        }
+
+//        @Delete
+//        fun delete(spell: Spell)
 }
