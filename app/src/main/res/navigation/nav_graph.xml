@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/spells_list">
+    app:startDestination="@id/plyaerSheet">
 
     <fragment
         android:id="@+id/spell_card"
@@ -27,4 +27,9 @@
             android:id="@+id/action_spells_list_to_spell_card"
             app:destination="@id/spell_card" />
     </fragment>
+    <fragment
+        android:id="@+id/plyaerSheet"
+        android:name="com.example.dndgrimoire.PlyaerSheet"
+        android:label="fragment_player_sheet"
+        tools:layout="@layout/fragment_player_sheet" />
 </navigation>
