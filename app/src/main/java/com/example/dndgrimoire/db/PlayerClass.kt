@@ -1,15 +1,15 @@
 package com.example.dndgrimoire.db
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.example.dndgrimoire.strings.*
 
 @Entity(tableName = "player_classes", indices = [Index(value = ["name"],
     unique = true)])
-data class PlayerClass(
-    @PrimaryKey(autoGenerate = true) val playerClassId: Int?,
+data class PlayerClass
+
+    @Ignore
+    constructor(
+    @PrimaryKey(autoGenerate = true) var playerClassId: Int?,
     @ColumnInfo val name: String
 ){
     constructor(name: String)

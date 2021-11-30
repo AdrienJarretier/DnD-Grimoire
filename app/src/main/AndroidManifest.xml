@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DnDGrimoire">
         <activity
+            android:name=".setPlayerSheet"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
