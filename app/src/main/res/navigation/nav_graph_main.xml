@@ -3,12 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph2"
-    app:startDestination="@id/nav_graph">
+    app:startDestination="@id/spells">
 
     <fragment
         android:id="@+id/setPlayerSheet2"
         android:name="com.example.dndgrimoire.SetPlayerSheet"
         android:label="fragment_set_player_sheet"
         tools:layout="@layout/fragment_set_player_sheet" />
-    <include app:graph="@navigation/nav_graph" />
+    <fragment
+        android:id="@+id/spells"
+        android:name="com.example.dndgrimoire.Spells"
+        android:label="fragment_spells"
+        tools:layout="@layout/fragment_spells" />
 </navigation>
