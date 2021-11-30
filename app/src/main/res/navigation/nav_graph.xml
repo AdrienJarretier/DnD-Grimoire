@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/setPlayerSheet">
+    app:startDestination="@id/spells_list">
+
 
     <fragment
         android:id="@+id/spell_card"
         android:name="com.example.dndgrimoire.spell_card"
         android:label="fragment_spell_card"
-        tools:layout="@layout/fragment_spell_card" >
+        tools:layout="@layout/fragment_spell_card">
         <action
             android:id="@+id/action_spell_card_to_spells_list"
             app:destination="@id/spells_list" />
@@ -22,14 +23,9 @@
         android:id="@+id/spells_list"
         android:name="com.example.dndgrimoire.spells_list"
         android:label="fragment_spells_list"
-        tools:layout="@layout/fragment_spells_list" >
+        tools:layout="@layout/fragment_spells_list">
         <action
             android:id="@+id/action_spells_list_to_spell_card"
             app:destination="@id/spell_card" />
     </fragment>
-    <fragment
-        android:id="@+id/setPlayerSheet"
-        android:name="com.example.dndgrimoire.SetPlayerSheet"
-        android:label="fragment_set_player_sheet"
-        tools:layout="@layout/fragment_set_player_sheet" />
 </navigation>
