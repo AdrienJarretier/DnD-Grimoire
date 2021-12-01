@@ -45,7 +45,8 @@ class Spells : Fragment() {
         rootView.findViewById<TextView>(R.id.pcName).text =
             preferences.getString("characterName", "Nom")
 
-        rootView.findViewById<TextView>(R.id.pcClass).text = preferences.getString("characterClass", "Classe")
+        rootView.findViewById<TextView>(R.id.pcClass).text =
+            preferences.getString("characterClass", "Classe")
 
         rootView.findViewById<TextView>(R.id.pcLevel).text =
             preferences.getInt("characterLevel", 0).toString()
