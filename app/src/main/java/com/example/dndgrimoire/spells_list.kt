@@ -1,7 +1,6 @@
 package com.example.dndgrimoire
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,7 +46,7 @@ class spells_list : Fragment() {
 
         val spellDao = db.spellDao()
 
-        val spells: List<Spell> = spellDao.getAll().sortedWith(compareBy(Spell::level, Spell::spell_name))
+        val spells: List<Spell> = spellDao.getAllSpells().sortedWith(compareBy(Spell::level, Spell::spell_name))
 
         val linearVertLayout = rootView.findViewById<LinearLayout>(R.id.linearVerticalLayout)
 

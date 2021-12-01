@@ -5,7 +5,10 @@ import androidx.room.*
 @Dao
 interface SpellDao {
         @Query("SELECT * FROM spells")
-        fun getAll(): List<Spell>
+        fun getAllSpells(): List<Spell>
+
+        @Query("SELECT * FROM player_classes")
+        fun getAllCharacterClasses(): List<PlayerClass>
 
         @Query("SELECT * FROM spells WHERE spellId= :id")
         fun getSpell(id: Int): Spell

@@ -1,10 +1,15 @@
 package com.example.dndgrimoire
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.fragment.app.Fragment
+import com.example.dndgrimoire.db.PlayerClass
+import com.example.dndgrimoire.db.RoomSingleton
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +39,32 @@ class SetPlayerSheet : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_set_player_sheet, container, false)
+
+        val rootView = inflater.inflate(R.layout.fragment_set_player_sheet, container, false)
+
+        val db = RoomSingleton.getInstance(requireContext())
+        val spellDao = db.spellDao()
+
+        val characterClasses: List<String> =
+            spellDao.getAllCharacterClasses().sortedWith(compareBy(PlayerClass::name))
+                .map { charClass -> charClass.name }
+
+        val spinnerClassesSelector = rootView.findViewById<Spinner>(R.id.characterClassSelector)
+
+        ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_spinner_item, characterClasses
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinnerClassesSelector.adapter = adapter
+        }
+
+
+
+
+        return rootView
     }
 
     companion object {
