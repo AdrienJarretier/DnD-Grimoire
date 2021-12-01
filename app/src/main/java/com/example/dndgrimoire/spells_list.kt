@@ -1,5 +1,6 @@
 package com.example.dndgrimoire
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -46,7 +47,14 @@ class spells_list : Fragment() {
 
         val spellDao = db.spellDao()
 
-        val spells: List<Spell> = spellDao.getAllSpells().sortedWith(compareBy(Spell::level, Spell::spell_name))
+        val preferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
+
+        val spells: List<Spell> = spellDao.getSpellsForCharacterClass(
+            preferences.getString(
+                "characterClass",
+                "Classe"
+            )!!
+        ).spells.sortedWith(compareBy(Spell::level, Spell::spell_name))
 
         val linearVertLayout = rootView.findViewById<LinearLayout>(R.id.linearVerticalLayout)
 
@@ -55,7 +63,7 @@ class spells_list : Fragment() {
             val text = TextView(context)
             text.text = spell.spell_name
             text.height = 90
-            text.setOnClickListener{
+            text.setOnClickListener {
 
                 val action = spells_listDirections.actionSpellsListToSpellCard(spell.spellId!!)
                 findNavController().navigate(action)

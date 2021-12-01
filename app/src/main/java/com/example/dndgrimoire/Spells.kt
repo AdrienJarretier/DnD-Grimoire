@@ -40,16 +40,15 @@ class Spells : Fragment() {
 
         val rootView = inflater.inflate(R.layout.fragment_spells, container, false)
 
-        val preferencesEditor = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val preferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
 
         rootView.findViewById<TextView>(R.id.pcName).text =
-            preferencesEditor.getString("characterName", "Nom")
+            preferences.getString("characterName", "Nom")
 
-        rootView.findViewById<TextView>(R.id.pcClass).text =
-            preferencesEditor.getString("characterClass", "Classe")
+        rootView.findViewById<TextView>(R.id.pcClass).text = preferences.getString("characterClass", "Classe")
 
         rootView.findViewById<TextView>(R.id.pcLevel).text =
-            preferencesEditor.getInt("characterLevel", 0).toString()
+            preferences.getInt("characterLevel", 0).toString()
 
         Log.i("spellView", "opened")
 

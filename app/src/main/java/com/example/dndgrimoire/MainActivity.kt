@@ -1,6 +1,7 @@
 package com.example.dndgrimoire
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
@@ -16,6 +17,7 @@ import com.google.android.material.navigation.NavigationView
 import testInsert.TestInsert2
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -27,10 +27,15 @@ interface SpellDao {
 
         @Query("SELECT * FROM player_classes WHERE name LIKE :name LIMIT 1")
         fun findPlayerClassByName(name: String): PlayerClass
-//
-//        @Transaction
-//        @Query("SELECT * FROM player_classes")
-//        fun getPlayerClassesWithSpells(): List<PlayerClassWithSpells>
+
+        @Transaction
+        @Query("SELECT * FROM player_classes where name LIKE :characterClassName")
+        fun getSpellsForCharacterClass(characterClassName: String): PlayerClassWithSpells
+
+
+        @Transaction
+        @Query("SELECT * FROM player_classes")
+        fun getPlayerClassesWithSpells(): List<PlayerClassWithSpells>
 
         @Insert
         fun insertAll(vararg spells: Spell)
