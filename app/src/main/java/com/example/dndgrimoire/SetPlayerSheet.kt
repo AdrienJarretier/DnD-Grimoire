@@ -1,5 +1,6 @@
 package com.example.dndgrimoire
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,6 +16,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.dndgrimoire.db.PlayerClass
 import com.example.dndgrimoire.db.RoomSingleton
+import java.lang.NumberFormatException
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,7 +29,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SetPlayerSheet.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SetPlayerSheet : Fragment(), AdapterView.OnItemSelectedListener {
+class SetPlayerSheet : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -51,6 +53,7 @@ class SetPlayerSheet : Fragment(), AdapterView.OnItemSelectedListener {
         val db = RoomSingleton.getInstance(requireContext())
         val spellDao = db.spellDao()
 
+        val preferencesEditor = activity?.getPreferences(Context.MODE_PRIVATE)?.edit()
 
         /**************************************************/
         /***************** Character Name *****************/
@@ -63,6 +66,11 @@ class SetPlayerSheet : Fragment(), AdapterView.OnItemSelectedListener {
                 override fun onFocusChange(v: View?, hasFocus: Boolean) {
                     if (!hasFocus) {
                         Log.d("name changed", characterNameEditText.text.toString())
+                        preferencesEditor?.putString(
+                            "characterName",
+                            characterNameEditText.text.toString()
+                        )
+                        preferencesEditor?.apply()
                     }
                 }
             })
@@ -89,7 +97,29 @@ class SetPlayerSheet : Fragment(), AdapterView.OnItemSelectedListener {
             // Apply the adapter to the spinner
             spinnerClassesSelector.adapter = adapter
         }
-        spinnerClassesSelector.onItemSelectedListener = this;
+        spinnerClassesSelector.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    // An item was selected. You can retrieve the selected item using
+
+                    Log.d("characterClass :", parent?.getItemAtPosition(position).toString())
+                    preferencesEditor?.putString(
+                        "characterClass",
+                        parent?.getItemAtPosition(position).toString()
+                    )
+                    preferencesEditor?.apply()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+            }
         /*************************************************/
         /*************************************************/
 
@@ -104,7 +134,20 @@ class SetPlayerSheet : Fragment(), AdapterView.OnItemSelectedListener {
 
                 override fun onFocusChange(v: View?, hasFocus: Boolean) {
                     if (!hasFocus) {
-                        Log.d("level changed", characterLevelEditText.text.toString())
+
+                        val level = try {
+                            val levelString = characterLevelEditText.text.toString()
+                            Log.d("level changed", levelString)
+                            levelString.toInt()
+                        } catch (ne: NumberFormatException) {
+                            Log.d("level changed", "0")
+                            0
+                        }
+
+                        preferencesEditor?.putInt(
+                            "characterLevel", level
+                        )
+                        preferencesEditor?.apply()
                     }
                 }
             })
@@ -134,14 +177,4 @@ class SetPlayerSheet : Fragment(), AdapterView.OnItemSelectedListener {
             }
     }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        // An item was selected. You can retrieve the selected item using
-
-        Log.d("item selected :", parent?.getItemAtPosition(position).toString())
-        Log.d("item selected id :", id.toString())
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("Not yet implemented")
-    }
 }

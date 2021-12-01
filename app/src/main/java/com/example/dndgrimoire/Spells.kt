@@ -1,10 +1,13 @@
 package com.example.dndgrimoire
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +37,23 @@ class Spells : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_spells, container, false)
+
+        val rootView = inflater.inflate(R.layout.fragment_spells, container, false)
+
+        val preferencesEditor = requireActivity().getPreferences(Context.MODE_PRIVATE)
+
+        rootView.findViewById<TextView>(R.id.pcName).text =
+            preferencesEditor.getString("characterName", "Nom")
+
+        rootView.findViewById<TextView>(R.id.pcClass).text =
+            preferencesEditor.getString("characterClass", "Classe")
+
+        rootView.findViewById<TextView>(R.id.pcLevel).text =
+            preferencesEditor.getInt("characterLevel", 0).toString()
+
+        Log.i("spellView", "opened")
+
+        return rootView
     }
 
     companion object {
