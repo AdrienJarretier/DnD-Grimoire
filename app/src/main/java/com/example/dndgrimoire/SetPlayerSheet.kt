@@ -1,11 +1,17 @@
 package com.example.dndgrimoire
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Spinner
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.dndgrimoire.db.PlayerClass
 import com.example.dndgrimoire.db.RoomSingleton
@@ -21,7 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SetPlayerSheet.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SetPlayerSheet : Fragment() {
+class SetPlayerSheet : Fragment(), AdapterView.OnItemSelectedListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -45,9 +51,32 @@ class SetPlayerSheet : Fragment() {
         val db = RoomSingleton.getInstance(requireContext())
         val spellDao = db.spellDao()
 
-        val characterClasses: List<String> =
-            spellDao.getAllCharacterClasses().sortedWith(compareBy(PlayerClass::name))
-                .map { charClass -> charClass.name }
+
+        /**************************************************/
+        /***************** Character Name *****************/
+        /**************************************************/
+        val characterNameEditText = rootView.findViewById<EditText>(R.id.editTextTextPersonName)
+
+        characterNameEditText
+            .setOnFocusChangeListener(object : View.OnFocusChangeListener {
+
+                override fun onFocusChange(v: View?, hasFocus: Boolean) {
+                    if (!hasFocus) {
+                        Log.d("name changed", characterNameEditText.text.toString())
+                    }
+                }
+            })
+        /**************************************************/
+        /**************************************************/
+
+
+        /*************************************************/
+        /*************** Character Classes ***************/
+        /*************************************************/
+        var characterClasses: List<String> = listOf("Classe") +
+                spellDao.getAllCharacterClasses().sortedWith(compareBy(PlayerClass::name))
+                    .map { charClass -> charClass.name }
+
 
         val spinnerClassesSelector = rootView.findViewById<Spinner>(R.id.characterClassSelector)
 
@@ -60,9 +89,27 @@ class SetPlayerSheet : Fragment() {
             // Apply the adapter to the spinner
             spinnerClassesSelector.adapter = adapter
         }
+        spinnerClassesSelector.onItemSelectedListener = this;
+        /*************************************************/
+        /*************************************************/
 
 
+        /*************************************************/
+        /**************** Character Level ****************/
+        /*************************************************/
+        val characterLevelEditText = rootView.findViewById<EditText>(R.id.editTextCharacterLevel)
 
+        characterLevelEditText
+            .setOnFocusChangeListener(object : View.OnFocusChangeListener {
+
+                override fun onFocusChange(v: View?, hasFocus: Boolean) {
+                    if (!hasFocus) {
+                        Log.d("level changed", characterLevelEditText.text.toString())
+                    }
+                }
+            })
+        /*************************************************/
+        /*************************************************/
 
         return rootView
     }
@@ -85,5 +132,16 @@ class SetPlayerSheet : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        // An item was selected. You can retrieve the selected item using
+
+        Log.d("item selected :", parent?.getItemAtPosition(position).toString())
+        Log.d("item selected id :", id.toString())
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("Not yet implemented")
     }
 }

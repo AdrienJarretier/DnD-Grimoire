@@ -2,6 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/spells"
+        android:title="Sorts" />
+    <item
         android:id="@+id/setPlayerSheet2"
         android:title="Personnage" />
 </menu>
