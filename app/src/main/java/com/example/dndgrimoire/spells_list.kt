@@ -51,9 +51,8 @@ class spells_list : Fragment() {
 
         val linearVertLayout = rootView.findViewById<LinearLayout>(R.id.linearVerticalLayout)
 
-        Log.w("spells count :", spells.size.toString())
         for (spell in spells) {
-            Log.w("spell :", spell.spell_name)
+
             val text = TextView(context)
             text.text = spell.spell_name
             text.height = 90

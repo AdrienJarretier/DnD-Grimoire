@@ -60,8 +60,6 @@ class spell_card : Fragment() {
 
         val spellId = args.spellId
 
-        Log.d("spellId", spellId.toString())
-
         val db = RoomSingleton.getInstance(requireContext())
         val spellDao = db.spellDao()
 
