@@ -49,27 +49,44 @@ class spells_list : Fragment() {
 
         val preferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
 
-        val spells: List<Spell> = spellDao.getSpellsForCharacterClass(
-            preferences.getString(
-                "characterClass",
-                "Classe"
-            )!!
-        ).spells.sortedWith(compareBy(Spell::level, Spell::spell_name))
-
         val linearVertLayout = rootView.findViewById<LinearLayout>(R.id.linearVerticalLayout)
+        fun addSpells(spells: List<Spell>) {
 
-        for (spell in spells) {
+            for (spell in spells) {
 
-            val text = TextView(context)
-            text.text = spell.spell_name
-            text.height = 90
-            text.setOnClickListener {
+                val text = TextView(context)
+                text.text = spell.spell_name
+                text.height = 90
+                text.setOnClickListener {
 
-                val action = spells_listDirections.actionSpellsListToSpellCard(spell.spellId!!)
-                findNavController().navigate(action)
+                    val action = spells_listDirections.actionSpellsListToSpellCard(spell.spellId!!)
+                    findNavController().navigate(action)
 
+                }
+                linearVertLayout.addView(text)
             }
-            linearVertLayout.addView(text)
+        }
+
+        try {
+
+            val spells: List<Spell> = spellDao.getSpellsForCharacterClass(
+                preferences.getString(
+                    "characterClass",
+                    "Classe"
+                )!!
+            ).spells.sortedWith(compareBy(Spell::level, Spell::spell_name))
+
+            addSpells(spells)
+
+        } catch (npe: NullPointerException) {
+
+            for (characterClass in spellDao.getPlayerClassesWithSpells()) {
+                val text = TextView(context)
+                text.text = characterClass.playerClass.name + " :"
+                text.height = 90
+                linearVertLayout.addView(text)
+                addSpells(characterClass.spells)
+            }
         }
 
         return rootView
