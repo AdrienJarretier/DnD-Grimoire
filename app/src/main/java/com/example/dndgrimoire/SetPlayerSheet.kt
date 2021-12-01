@@ -12,7 +12,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.dndgrimoire.db.PlayerClass
 import com.example.dndgrimoire.db.RoomSingleton
@@ -53,27 +52,34 @@ class SetPlayerSheet : Fragment() {
         val db = RoomSingleton.getInstance(requireContext())
         val spellDao = db.spellDao()
 
-        val preferencesEditor = activity?.getPreferences(Context.MODE_PRIVATE)?.edit()
+        val preferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
 
         /**************************************************/
         /***************** Character Name *****************/
         /**************************************************/
         val characterNameEditText = rootView.findViewById<EditText>(R.id.editTextTextPersonName)
+        characterNameEditText.setText(preferences.getString("characterName", ""))
+        characterNameEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
-        characterNameEditText
-            .setOnFocusChangeListener(object : View.OnFocusChangeListener {
+            }
 
-                override fun onFocusChange(v: View?, hasFocus: Boolean) {
-                    if (!hasFocus) {
-                        Log.d("name changed", characterNameEditText.text.toString())
-                        preferencesEditor?.putString(
-                            "characterName",
-                            characterNameEditText.text.toString()
-                        )
-                        preferencesEditor?.apply()
-                    }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                Log.d("name changed", characterNameEditText.text.toString())
+                with(preferences.edit()) {
+                    putString(
+                        "characterName",
+                        characterNameEditText.text.toString()
+                    )
+                    apply()
                 }
-            })
+            }
+
+        })
         /**************************************************/
         /**************************************************/
 
@@ -85,6 +91,22 @@ class SetPlayerSheet : Fragment() {
                 spellDao.getAllCharacterClasses().sortedWith(compareBy(PlayerClass::name))
                     .map { charClass -> charClass.name }
 
+        val savedCharacterClass = preferences.getString(
+            "characterClass",
+            "Classe"
+        )!!
+        Log.i(
+            "saved class : ",
+            savedCharacterClass
+        )
+
+//        val indexOfClassInCharacterClasses = characterClasses.indexOf(
+//            savedCharacterClass
+//        )
+//        Log.i(
+//            "indexOfClassInCharacterClasses : ",
+//            indexOfClassInCharacterClasses.toString()
+//        )
 
         val spinnerClassesSelector = rootView.findViewById<Spinner>(R.id.characterClassSelector)
 
@@ -96,6 +118,10 @@ class SetPlayerSheet : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
             spinnerClassesSelector.adapter = adapter
+
+            spinnerClassesSelector.setSelection(
+                adapter.getPosition(savedCharacterClass)
+            )
         }
         spinnerClassesSelector.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
@@ -108,12 +134,14 @@ class SetPlayerSheet : Fragment() {
                 ) {
                     // An item was selected. You can retrieve the selected item using
 
-                    Log.d("characterClass :", parent?.getItemAtPosition(position).toString())
-                    preferencesEditor?.putString(
-                        "characterClass",
-                        parent?.getItemAtPosition(position).toString()
-                    )
-                    preferencesEditor?.apply()
+                    Log.d("characterClass changed", parent?.getItemAtPosition(position).toString())
+                    with(preferences.edit()) {
+                        putString(
+                            "characterClass",
+                            parent?.getItemAtPosition(position).toString()
+                        )
+                        apply()
+                    }
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -128,29 +156,36 @@ class SetPlayerSheet : Fragment() {
         /**************** Character Level ****************/
         /*************************************************/
         val characterLevelEditText = rootView.findViewById<EditText>(R.id.editTextCharacterLevel)
+        characterLevelEditText.setText(preferences.getInt("characterLevel", 0).toString())
+        characterLevelEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
-        characterLevelEditText
-            .setOnFocusChangeListener(object : View.OnFocusChangeListener {
+            }
 
-                override fun onFocusChange(v: View?, hasFocus: Boolean) {
-                    if (!hasFocus) {
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-                        val level = try {
-                            val levelString = characterLevelEditText.text.toString()
-                            Log.d("level changed", levelString)
-                            levelString.toInt()
-                        } catch (ne: NumberFormatException) {
-                            Log.d("level changed", "0")
-                            0
-                        }
+            }
 
-                        preferencesEditor?.putInt(
-                            "characterLevel", level
-                        )
-                        preferencesEditor?.apply()
-                    }
+            override fun afterTextChanged(s: Editable?) {
+
+                val level = try {
+                    val levelString = characterLevelEditText.text.toString()
+                    Log.d("level changed", levelString)
+                    levelString.toInt()
+                } catch (ne: NumberFormatException) {
+                    Log.d("level changed", "0")
+                    0
                 }
-            })
+
+                with(preferences.edit()) {
+                    putInt(
+                        "characterLevel", level
+                    )
+                    apply()
+                }
+            }
+
+        })
         /*************************************************/
         /*************************************************/
 
