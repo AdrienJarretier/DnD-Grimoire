@@ -1,28 +1,19 @@
 package com.example.dndgrimoire
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
 import androidx.appcompat.app.AppCompatActivity
-import com.example.dndgrimoire.db.RoomSingleton
-
-import testInsert.*
-import android.content.DialogInterface
-import android.view.MenuItem
-
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.dndgrimoire.db.RoomSingleton
 import com.google.android.material.navigation.NavigationView
+import testInsert.TestInsert2
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,12 +22,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val spellDao = RoomSingleton.getInstance(applicationContext).spellDao()
-        if(spellDao.isEmpty()) {
+        if (spellDao.isEmpty()) {
             Log.d("isEmpty", "true")
 
             try {
                 TestInsert2.testInsert(spellDao)
-            }catch (e: SQLiteConstraintException) {
+            } catch (e: SQLiteConstraintException) {
 
                 val alertDialog: AlertDialog = AlertDialog.Builder(this).create()
                 alertDialog.setTitle("Error")
@@ -47,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 RoomSingleton.getInstance(applicationContext).clearAllTables()
             }
 
-        }else {
+        } else {
             Log.d("isEmpty", "false")
         }
 
@@ -66,7 +57,6 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<NavigationView>(R.id.nav_view)
             .setupWithNavController(navController)
-
 
 
     }
