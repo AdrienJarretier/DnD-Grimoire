@@ -11,13 +11,18 @@ import com.example.dndgrimoire.db.RoomSingleton
 
 import testInsert.*
 import android.content.DialogInterface
+import android.view.MenuItem
 
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,14 +55,19 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
+
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+
         val appBarConfiguration = AppBarConfiguration(
-            topLevelDestinationIds = setOf(),
-            fallbackOnNavigateUpListener = ::onSupportNavigateUp
+            navController.graph, drawerLayout
         )
         findViewById<Toolbar>(R.id.toolbar)
             .setupWithNavController(navController, appBarConfiguration)
 
-        setSupportActionBar(findViewById(R.id.toolbar))
+        findViewById<NavigationView>(R.id.nav_view)
+            .setupWithNavController(navController)
+
+
 
     }
 
@@ -66,5 +76,11 @@ class MainActivity : AppCompatActivity() {
 //        inflater.inflate(R.menu.menu, menu)
 //        return true
 //    }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        val navController = findNavController(R.id.nav_host_fragment)
+//        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+//    }
+
 
 }
