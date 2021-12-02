@@ -8,7 +8,7 @@
 
     <style name="SpellLevelTitle">
         <item name="android:textAllCaps">true</item>
-        <item name="android:text">bold</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

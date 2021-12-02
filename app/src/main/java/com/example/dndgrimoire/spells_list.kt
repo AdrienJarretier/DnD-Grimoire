@@ -1,6 +1,7 @@
 package com.example.dndgrimoire
 
 import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -58,8 +59,10 @@ class spells_list : Fragment() {
 
             fun addTextLevelTitle(text: String) {
                 val textLevelTitle = TextView(context)
+
                 textLevelTitle.text = text
                 textLevelTitle.setTextAppearance(R.style.SpellLevelTitle)
+                linearVertLayout.addView(TextView(context))
                 linearVertLayout.addView(textLevelTitle)
             }
 
@@ -103,6 +106,9 @@ class spells_list : Fragment() {
 //                        resources.newTheme()
 //                    )
 //                )
+                tv.setBackgroundColor(
+                    resources.getColor(R.color.spellNameBg, resources.newTheme())
+                )
                 tv.setOnClickListener {
 
                     val action = spells_listDirections.actionSpellsListToSpellCard(spell.spellId!!)
@@ -111,13 +117,13 @@ class spells_list : Fragment() {
                 }
 
                 val mlp = ViewGroup.MarginLayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
                 mlp.bottomMargin = (convertDpToPx(requireContext(), 8))
-
-                tv.height = convertDpToPx(requireContext(), 48)
                 tv.layoutParams = mlp
+
+                tv.height = convertDpToPx(requireContext(), 48 - 8)
                 tv.gravity = Gravity.CENTER_VERTICAL
 
                 linearVertLayout.addView(tv)
@@ -139,7 +145,7 @@ class spells_list : Fragment() {
 
             for (characterClass in spellDao.getPlayerClassesWithSpells()) {
                 val text = TextView(context)
-                text.text = characterClass.playerClass.name + " :"
+                text.text = "Sorts de ${characterClass.playerClass.name}"
                 text.setTextAppearance(R.style.PlayerClassNameSeparator)
                 linearVertLayout.addView(text)
                 addSpells(characterClass.spells)
