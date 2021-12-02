@@ -2,7 +2,6 @@ package com.example.dndgrimoire
 
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
