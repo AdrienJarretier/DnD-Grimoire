@@ -2,6 +2,7 @@ package com.example.dndgrimoire
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -62,7 +63,26 @@ class spells_list : Fragment() {
                 linearVertLayout.addView(textLevelTitle)
             }
 
-            val spells = spells.sortedWith(compareBy(Spell::level, Spell::spell_name))
+//            val spells = spells.sortedWith(compareBy(Spell::level, Spell::spell_name))
+
+            Log.i("addSpells", "addSpells")
+            spells.forEach { s -> Log.i("s:", s.spell_name) }
+
+            val spells = spells.sortedWith(object : Comparator<Spell> {
+                override fun compare(o1: Spell, o2: Spell): Int {
+                    return if (o1.level == o2.level)
+                        0
+                    else if (o2.level == null)
+                        -1
+                    else if (o1.level == null)
+                        1
+                    else if (o1.level < o2.level)
+                        -1
+                    else
+                        1
+                }
+
+            })
 
             addTextLevelTitle("Tours de magie")
             var spellLevel: String? = "0"

@@ -27,5 +27,11 @@ class SpellInserter(val spellDao: SpellDao) {
         spellDao.insert(playerClassName, spellsNames)
     }
 
+    fun insertAll(vararg spells: Spell) {
+        for (spell in spells) {
+            insert(spell)
+        }
+    }
+
     class UniqueConstraintException(val spell: Spell) : Throwable()
 }

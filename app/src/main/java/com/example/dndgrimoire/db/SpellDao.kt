@@ -37,8 +37,8 @@ interface SpellDao {
     @Query("SELECT * FROM player_classes")
     fun getPlayerClassesWithSpells(): List<PlayerClassWithSpells>
 
-    @Insert
-    fun insertAll(vararg spells: Spell)
+//    @Insert
+//    fun insertAll(vararg spells: Spell)
 //        @Insert
 //        fun insertAll(vararg playerClasses: PlayerClass)
 //        @Insert
