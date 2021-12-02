@@ -6,4 +6,9 @@
         <item name="android:textColor">#b45a4e</item>
     </style>
 
+    <style name="SpellLevelTitle">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:text">bold</item>
+    </style>
+
 </resources>

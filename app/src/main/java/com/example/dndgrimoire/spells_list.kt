@@ -55,7 +55,24 @@ class spells_list : Fragment() {
 
         fun addSpells(spells: List<Spell>) {
 
+            fun addTextLevelTitle(text: String) {
+                val textLevelTitle = TextView(context)
+                textLevelTitle.text = text
+                textLevelTitle.setTextAppearance(R.style.SpellLevelTitle)
+                linearVertLayout.addView(textLevelTitle)
+            }
+
+            val spells = spells.sortedWith(compareBy(Spell::level, Spell::spell_name))
+
+            addTextLevelTitle("Tours de magie")
+            var spellLevel: String? = "0"
+
             for (spell in spells) {
+
+                if (spellLevel.toString() != spell.level.toString()) {
+                    spellLevel = spell.level.toString()
+                    addTextLevelTitle("Niveau $spellLevel")
+                }
 
                 val tv = TextView(context)
 
@@ -94,7 +111,7 @@ class spells_list : Fragment() {
                     "characterClass",
                     "Classe"
                 )!!
-            ).spells.sortedWith(compareBy(Spell::level, Spell::spell_name))
+            ).spells
 
             addSpells(spells)
 
