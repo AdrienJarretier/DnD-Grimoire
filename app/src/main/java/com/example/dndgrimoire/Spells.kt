@@ -51,7 +51,7 @@ class Spells : Fragment() {
         rootView.findViewById<TextView>(R.id.pcLevel).text =
             preferences.getInt("characterLevel", 0).toString()
 
-        Log.i("spellView", "opened")
+//        Log.i("spellView", "opened")
 
         return rootView
     }

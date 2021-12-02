@@ -69,6 +69,9 @@ interface SpellDao {
         }
     }
 
+    @Update
+    fun update(spell: Spell)
+
 //        @Delete
 //        fun delete(spell: Spell)
 }

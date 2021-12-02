@@ -5,26 +5,27 @@ import android.util.Log
 
 class SpellInserter(val spellDao: SpellDao) {
 
-    fun insert(spell: Spell) {
+    fun insert(newSpell: Spell) {
 
         try {
-
-            spellDao.insert(spell)
+            spellDao.insert(newSpell)
         } catch (e: SQLiteConstraintException) {
 
-            throw UniqueConstraintException(spell)
-
+            val spellInDb = spellDao.findSpellByName(newSpell.spell_name)
+//            Log.d("newSpell :", newSpell.toString())
+//            Log.d("spellInDb :", spellInDb.toString())
+            if (spellInDb.level == null) {
+                newSpell.spellId = spellInDb.spellId
+                spellDao.update(newSpell)
+            } else
+                throw UniqueConstraintException(newSpell)
         }
-
     }
 
     fun insert(playerClassName: String, spellsNames: List<String>) {
 
         spellDao.insert(playerClassName, spellsNames)
-
     }
 
-    class UniqueConstraintException(val spell: Spell) : Throwable() {
-
-    }
+    class UniqueConstraintException(val spell: Spell) : Throwable()
 }

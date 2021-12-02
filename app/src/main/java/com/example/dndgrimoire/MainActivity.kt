@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val spellDao = RoomSingleton.getInstance(applicationContext).spellDao()
         if (spellDao.isEmpty()) {
-            Log.d("isEmpty", "true")
+//            Log.d("isEmpty", "true")
 
             try {
                 TestInsert2.testInsert(SpellInserter(spellDao))
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         } else {
-            Log.d("isEmpty", "false")
+//            Log.d("isEmpty", "false")
         }
 
 
