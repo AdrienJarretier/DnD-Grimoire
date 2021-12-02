@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.dndgrimoire.db.RoomSingleton
+import com.example.dndgrimoire.db.SpellInserter
 import com.google.android.material.navigation.NavigationView
 import testInsert.TestInsert2
 
@@ -27,12 +28,12 @@ class MainActivity : AppCompatActivity() {
             Log.d("isEmpty", "true")
 
             try {
-                TestInsert2.testInsert(spellDao)
-            } catch (e: SQLiteConstraintException) {
+                TestInsert2.testInsert(SpellInserter(spellDao))
+            } catch (e: SpellInserter.UniqueConstraintException) {
 
                 val alertDialog: AlertDialog = AlertDialog.Builder(this).create()
-                alertDialog.setTitle("Error")
-                alertDialog.setMessage(e.localizedMessage)
+                alertDialog.setTitle("Erreur")
+                alertDialog.setMessage("Sort dupliqué : " + e.spell.spell_name)
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     DialogInterface.OnClickListener { dialog, _ -> dialog.dismiss() })
                 alertDialog.show()
