@@ -17,13 +17,15 @@
         <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/layout/fragment_set_player_sheet.xml" value="0.275" />
         <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/layout/fragment_spell_card.xml" value="0.24722222222222223" />
         <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/layout/fragment_spells.xml" value="0.19594260267194458" />
-        <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/layout/fragment_spells_list.xml" value="0.275" />
+        <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/layout/fragment_spells_list.xml" value="0.22727272727272727" />
         <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/layout/fragment_spells_list_frag.xml" value="0.15390625" />
         <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/layout/fragment_spells_list_list.xml" value="0.264453125" />
         <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/layout/settings_activity.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/layout/spells.xml" value="0.275" />
+        <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/layout/text_view_template.xml" value="0.264453125" />
         <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/menu/menu.xml" value="0.1546875" />
         <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/xml/root_preferences.xml" value="0.1546875" />
+        <entry key="..\:/AndroidStudioProjects/DnDGrimoire/app/src/main/res/xml/space.xml" value="0.1" />
       </map>
     </option>
   </component>

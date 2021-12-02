@@ -2,15 +2,24 @@ package com.example.dndgrimoire
 
 import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.Space
 import android.widget.TextView
+import androidx.core.view.setPadding
 import androidx.navigation.fragment.findNavController
 import com.example.dndgrimoire.db.RoomSingleton
 import com.example.dndgrimoire.db.Spell
+import android.util.Xml
+
+import org.xmlpull.v1.XmlPullParser
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,20 +59,28 @@ class spells_list : Fragment() {
         val preferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
 
         val linearVertLayout = rootView.findViewById<LinearLayout>(R.id.linearVerticalLayout)
+
         fun addSpells(spells: List<Spell>) {
 
             for (spell in spells) {
 
-                val text = TextView(context)
-                text.text = spell.spell_name
-                text.height = 90
-                text.setOnClickListener {
+                val tv = TextView(context)
+
+                tv.text = spell.spell_name
+                tv.setBackgroundColor(
+                    resources.getColor(
+                        R.color.purple_500,
+                        resources.newTheme()
+                    )
+                )
+                tv.setOnClickListener {
 
                     val action = spells_listDirections.actionSpellsListToSpellCard(spell.spellId!!)
                     findNavController().navigate(action)
 
                 }
-                linearVertLayout.addView(text)
+
+                linearVertLayout.addView(tv)
             }
         }
 
@@ -83,7 +100,7 @@ class spells_list : Fragment() {
             for (characterClass in spellDao.getPlayerClassesWithSpells()) {
                 val text = TextView(context)
                 text.text = characterClass.playerClass.name + " :"
-                text.height = 90
+                text.setTextAppearance(R.style.PlayerClassNameSeparator)
                 linearVertLayout.addView(text)
                 addSpells(characterClass.spells)
             }
