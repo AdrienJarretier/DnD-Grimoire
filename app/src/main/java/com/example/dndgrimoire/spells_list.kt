@@ -2,23 +2,16 @@ package com.example.dndgrimoire
 
 import android.content.Context
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.Space
 import android.widget.TextView
-import androidx.core.view.setPadding
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.dndgrimoire.db.RoomSingleton
 import com.example.dndgrimoire.db.Spell
-import android.util.Xml
-
-import org.xmlpull.v1.XmlPullParser
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -67,18 +60,28 @@ class spells_list : Fragment() {
                 val tv = TextView(context)
 
                 tv.text = spell.spell_name
-                tv.setBackgroundColor(
-                    resources.getColor(
-                        R.color.purple_500,
-                        resources.newTheme()
-                    )
-                )
+//                tv.setBackgroundColor(
+//                    resources.getColor(
+//                        R.color.purple_500,
+//                        resources.newTheme()
+//                    )
+//                )
                 tv.setOnClickListener {
 
                     val action = spells_listDirections.actionSpellsListToSpellCard(spell.spellId!!)
                     findNavController().navigate(action)
 
                 }
+
+                val mlp = ViewGroup.MarginLayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                mlp.bottomMargin = (convertDpToPx(requireContext(), 8))
+
+                tv.height = convertDpToPx(requireContext(), 48)
+                tv.layoutParams = mlp
+                tv.gravity = Gravity.CENTER_VERTICAL
 
                 linearVertLayout.addView(tv)
             }

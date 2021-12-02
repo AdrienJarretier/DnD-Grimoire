@@ -9,6 +9,6 @@ import android.content.Context
  * @param context Context to get resources and device specific display metrics
  * @return A float value to represent px equivalent to dp depending on device density
  */
-fun convertDpToPx(context: Context, dp: Float): Float {
-    return dp * context.resources.displayMetrics.density
+fun convertDpToPx(context: Context, dp: Int): Int {
+    return (dp.toFloat() * context.resources.displayMetrics.density).toInt()
 }
