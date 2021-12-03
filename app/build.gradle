@@ -24,7 +24,7 @@ android {
         applicationId "com.example.dndgrimoire"
         targetSdk 31
         versionCode 1
-        versionName "1.0.5"
+        versionName "2.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         minSdk 25
