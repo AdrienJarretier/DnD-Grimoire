@@ -17,7 +17,6 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 
-
 android {
     compileSdk 31
 
@@ -88,11 +87,21 @@ dependencies {
 
     /*************************************************************************/
 
+
+    /************************************************************************
+     ************************** kotlin-csv library **************************
+     ************************************************************************/
+
+    implementation 'com.github.doyaaaaaken:kotlin-csv-js:1.2.0' //for Kotlin JS platform
+
+    /*************************************************************************/
+
 }
 
 android.applicationVariants.all {
-    variant ->    variant.outputs.all {
-    def appName = "DndGrimoire"
-        outputFileName = appName+"-${variant.versionName}.apk"
-}
+    variant ->
+        variant.outputs.all {
+            def appName = "DndGrimoire"
+            outputFileName = appName + "-${variant.versionName}.apk"
+        }
 }
