@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        RoomSingleton.getInstance(applicationContext).clearAllTables()
+//        RoomSingleton.getInstance(applicationContext).clearAllTables()
         val spellDao = RoomSingleton.getInstance(applicationContext).spellDao()
         if (spellDao.isEmpty()) {
             Log.d("isEmpty", "true")
