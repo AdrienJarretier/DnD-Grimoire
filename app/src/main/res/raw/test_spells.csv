@@ -1,0 +1,5 @@
+nom,niveau,école,durée d’incantation,portée,composantes,durée,description
+Lumière,0,évocation,1 action,contact,"V, M (une luciole ou de la mousse phosphorescente)",1 heure,"Vous touchez un objet qui ne dépasse pas 3 mètres dans toutes les dimensions. Jusqu’à la fin du sort, l’objet émet une lumière vive dans un rayon de 6 mètres et une lumière faible sur 6 mètres supplémentaires. La lumière est de la couleur que vous voulez. Couvrir complètement l’objet avec quelque chose d’opaque bloque la lumière. Le sort se termine si vous le lancez de nouveau ou si vous le dissipez par une action.
+
+Si vous ciblez un objet tenu ou porté par une créature hostile, cette créature doit réussir un jet de sauvegarde de Dextérité pour éviter le sort."
+Assistance,0,divination,1 action,contact,"v, s","concentration, jusqu’à 1 minute","Vous touchez une créature consentante. Une fois avant la fin du sort, la cible peut lancer un d4 et ajouter le résultat du dé à un jet de caractéristique de son choix. Elle peut lancer le dé avant ou après avoir effectué son jet de caractéristique. Le sort prend alors fin."

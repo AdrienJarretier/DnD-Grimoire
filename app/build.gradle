@@ -92,7 +92,7 @@ dependencies {
      ************************** kotlin-csv library **************************
      ************************************************************************/
 
-    implementation 'com.github.doyaaaaaken:kotlin-csv-js:1.2.0' //for Kotlin JS platform
+    implementation 'com.github.doyaaaaaken:kotlin-csv-jvm:1.2.0' //for JVM platform
 
     /*************************************************************************/
 

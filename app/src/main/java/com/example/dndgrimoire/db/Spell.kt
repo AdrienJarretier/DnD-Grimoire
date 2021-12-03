@@ -41,4 +41,15 @@ constructor(
         description
     )
 
+    constructor(spell_params: List<String>) : this(
+        spell_params[0],
+        spell_params[1].toInt(),
+        spell_params[2],
+        spell_params[3],
+        spell_params[4],
+        spell_params[5],
+        spell_params[6],
+        spell_params[7]
+    )
+
 }

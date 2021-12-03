@@ -69,6 +69,10 @@ interface SpellDao {
         }
     }
 
+    fun insertCharacterClassNameWithSpell(playerClassName: String, spellName: String) {
+        insert(playerClassName, listOf(spellName))
+    }
+
     @Update
     fun update(spell: Spell)
 

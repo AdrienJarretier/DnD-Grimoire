@@ -13,7 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.dndgrimoire.db.RoomSingleton
 import com.example.dndgrimoire.db.SpellInserter
 import com.google.android.material.navigation.NavigationView
-import testInsert.TestInsert2
+import testInsert.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,12 +22,19 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
+        RoomSingleton.getInstance(applicationContext).clearAllTables()
         val spellDao = RoomSingleton.getInstance(applicationContext).spellDao()
         if (spellDao.isEmpty()) {
-//            Log.d("isEmpty", "true")
+            Log.d("isEmpty", "true")
 
             try {
-                TestInsert2.testInsert(SpellInserter(spellDao))
+                val testInserter = TestInsert3(spellDao)
+                testInserter.insertSpells(
+                    resources.openRawResource(R.raw.test_spells)
+                )
+                testInserter.insertPlayerClassesWithSpells(
+                    resources.openRawResource(R.raw.test_spells_with_class)
+                )
             } catch (e: SpellInserter.UniqueConstraintException) {
 
                 val alertDialog: AlertDialog = AlertDialog.Builder(this).create()
@@ -40,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         } else {
-//            Log.d("isEmpty", "false")
+            Log.d("isEmpty", "false")
         }
 
 

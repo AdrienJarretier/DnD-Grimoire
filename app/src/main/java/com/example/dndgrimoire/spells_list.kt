@@ -1,9 +1,8 @@
 package com.example.dndgrimoire
 
 import android.content.Context
-import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
+//import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -68,8 +67,8 @@ class spells_list : Fragment() {
 
 //            val spells = spells.sortedWith(compareBy(Spell::level, Spell::spell_name))
 
-            Log.i("addSpells", "addSpells")
-            spells.forEach { s -> Log.i("s:", s.spell_name) }
+//            Log.i("addSpells", "addSpells")
+//            spells.forEach { s -> Log.i("s:", s.spell_name) }
 
             val spells = spells.sortedWith(object : Comparator<Spell> {
                 override fun compare(o1: Spell, o2: Spell): Int {
@@ -120,7 +119,9 @@ class spells_list : Fragment() {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
-                mlp.bottomMargin = (convertDpToPx(requireContext(), 8))
+                mlp.bottomMargin = convertDpToPx(requireContext(), 8)
+                mlp.marginStart = convertDpToPx(requireContext(), 8)
+                mlp.marginEnd = convertDpToPx(requireContext(), 8)
                 tv.layoutParams = mlp
 
                 tv.height = convertDpToPx(requireContext(), 48 - 8)
@@ -150,7 +151,7 @@ class spells_list : Fragment() {
 
                 if (i > 0)
                     linearVertLayout.addView(TextView(context))
-                
+
                 linearVertLayout.addView(text)
                 addSpells(characterClass.spells)
             }

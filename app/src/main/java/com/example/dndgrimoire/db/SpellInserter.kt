@@ -7,6 +7,10 @@ class SpellInserter(val spellDao: SpellDao) {
 
     fun insert(newSpell: Spell) {
 
+
+
+        Log.i("newspell desc :", newSpell.description.toString())
+
         try {
             spellDao.insert(newSpell)
         } catch (e: SQLiteConstraintException) {
@@ -31,6 +35,12 @@ class SpellInserter(val spellDao: SpellDao) {
         for (spell in spells) {
             insert(spell)
         }
+    }
+
+    fun insertCharacterClassNameWithSpell(row: List<String>) {
+
+        spellDao.insertCharacterClassNameWithSpell(row[0], row[1])
+
     }
 
     class UniqueConstraintException(val spell: Spell) : Throwable()
