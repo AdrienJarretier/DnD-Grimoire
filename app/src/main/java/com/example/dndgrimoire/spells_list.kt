@@ -143,10 +143,14 @@ class spells_list : Fragment() {
 
         } catch (npe: NullPointerException) {
 
-            for (characterClass in spellDao.getPlayerClassesWithSpells()) {
+            for ((i, characterClass) in spellDao.getPlayerClassesWithSpells().withIndex()) {
                 val text = TextView(context)
                 text.text = "Sorts de ${characterClass.playerClass.name}"
                 text.setTextAppearance(R.style.PlayerClassNameSeparator)
+
+                if (i > 0)
+                    linearVertLayout.addView(TextView(context))
+                
                 linearVertLayout.addView(text)
                 addSpells(characterClass.spells)
             }
