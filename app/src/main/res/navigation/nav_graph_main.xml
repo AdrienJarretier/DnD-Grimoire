@@ -15,4 +15,9 @@
         android:name="com.example.dndgrimoire.Spells"
         android:label="fragment_spells"
         tools:layout="@layout/fragment_spells" />
+    <fragment
+        android:id="@+id/dataImport"
+        android:name="com.example.dndgrimoire.DataImport"
+        android:label="fragment_data_import"
+        tools:layout="@layout/fragment_data_import" />
 </navigation>

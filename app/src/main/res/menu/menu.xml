@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/spells"
-        android:title="Sorts" />
-    <item
-        android:id="@+id/setPlayerSheet2"
-        android:title="Personnage" />
+    <group android:id="@+id/spellsAdnSheetMenu">
+        <item
+            android:id="@+id/spells"
+            android:title="Sorts" />
+        <item
+            android:id="@+id/setPlayerSheet2"
+            android:title="Personnage" />
+    </group>
+    <group android:id="@+id/dataImpExpMenu">
+        <item
+            android:id="@+id/dataImport"
+            android:title="Import données" />
+    </group>
 </menu>
