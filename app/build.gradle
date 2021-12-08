@@ -44,7 +44,7 @@ android {
         applicationId "com.example.dndgrimoire"
         targetSdk 31
         versionCode 1
-        versionName "2.0.2"
+        versionName "2.0.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         minSdk 25
@@ -123,6 +123,6 @@ android.applicationVariants.all {
     variant ->
         variant.outputs.all {
             def appName = "DndGrimoire"
-            outputFileName = appName + "-${variant.versionName}.apk"
+            outputFileName = appName + "-${variant.versionName}-${variant.buildType.name}.apk"
         }
 }
