@@ -146,7 +146,7 @@ class spells_list : Fragment() {
 
             for ((i, characterClass) in spellDao.getPlayerClassesWithSpells().withIndex()) {
                 val text = TextView(context)
-                text.text = "Sorts de ${characterClass.playerClass.name}"
+                text.text = "Sorts de ${characterClass.characterClass.name}"
                 text.setTextAppearance(R.style.PlayerClassNameSeparator)
 
                 if (i > 0)

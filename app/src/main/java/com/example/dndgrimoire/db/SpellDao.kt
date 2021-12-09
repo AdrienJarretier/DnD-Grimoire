@@ -8,13 +8,13 @@ interface SpellDao {
     fun getAllSpells(): List<Spell>
 
     @Query("SELECT * FROM player_classes")
-    fun getAllCharacterClasses(): List<PlayerClass>
+    fun getAllCharacterClasses(): List<CharacterClass>
 
     @Query("SELECT * FROM spells WHERE spellId= :id")
     fun getSpell(id: Int): Spell
 
     @Query("SELECT * FROM player_classes WHERE playerClassId= :id")
-    fun getPlayerClass(id: Int): PlayerClass
+    fun getPlayerClass(id: Int): CharacterClass
 
     @Query("SELECT count(*)==0 FROM spells")
     fun isEmpty(): Boolean
@@ -26,16 +26,16 @@ interface SpellDao {
     fun findSpellByName(name: String): Spell
 
     @Query("SELECT * FROM player_classes WHERE name LIKE :name LIMIT 1")
-    fun findPlayerClassByName(name: String): PlayerClass
+    fun findPlayerClassByName(name: String): CharacterClass
 
     @Transaction
     @Query("SELECT * FROM player_classes where name LIKE :characterClassName")
-    fun getSpellsForCharacterClass(characterClassName: String): PlayerClassWithSpells
+    fun getSpellsForCharacterClass(characterClassName: String): CharacterClassWithSpells
 
 
     @Transaction
     @Query("SELECT * FROM player_classes")
-    fun getPlayerClassesWithSpells(): List<PlayerClassWithSpells>
+    fun getPlayerClassesWithSpells(): List<CharacterClassWithSpells>
 
 //    @Insert
 //    fun insertAll(vararg spells: Spell)
@@ -48,16 +48,16 @@ interface SpellDao {
     fun insert(spell: Spell): Long
 
     @Insert
-    fun insert(playerClass: PlayerClass): Long
+    fun insert(characterClass: CharacterClass): Long
 
     @Insert
-    fun insert(spells_playerClasses: SpellPlayerClass)
+    fun insert(spells_characterClasses: SpellCharacterClass)
 
     fun insert(playerClassName: String, spellsNames: List<String>) {
 
         var playerClass = findPlayerClassByName(playerClassName)
         if (playerClass == null) {
-            playerClass = getPlayerClass(insert(PlayerClass(playerClassName)).toInt())
+            playerClass = getPlayerClass(insert(CharacterClass(playerClassName)).toInt())
         }
         for (spellName in spellsNames) {
 
@@ -65,7 +65,7 @@ interface SpellDao {
             if (spell == null) {
                 spell = getSpell(insert(Spell(spellName)).toInt())
             }
-            insert(SpellPlayerClass(spell.spellId!!, playerClass.playerClassId!!))
+            insert(SpellCharacterClass(spell.spellId!!, playerClass.playerClassId!!))
         }
     }
 

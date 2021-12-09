@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "spells_player_classes",
     primaryKeys = ["spellId", "playerClassId"])
-data class SpellPlayerClass(
+data class SpellCharacterClass(
     val spellId: Int,
     val playerClassId: Int
 ){

@@ -5,7 +5,7 @@ import com.example.dndgrimoire.strings.*
 
 @Entity(tableName = "player_classes", indices = [Index(value = ["name"],
     unique = true)])
-data class PlayerClass
+data class CharacterClass
 
     @Ignore
     constructor(

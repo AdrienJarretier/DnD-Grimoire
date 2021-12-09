@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
-import com.example.dndgrimoire.db.PlayerClass
+import com.example.dndgrimoire.db.CharacterClass
 import com.example.dndgrimoire.db.RoomSingleton
 import java.lang.NumberFormatException
 
@@ -88,7 +88,7 @@ class SetPlayerSheet : Fragment() {
         /*************** Character Classes ***************/
         /*************************************************/
         var characterClasses: List<String> = listOf("Classe") +
-                spellDao.getAllCharacterClasses().sortedWith(compareBy(PlayerClass::name))
+                spellDao.getAllCharacterClasses().sortedWith(compareBy(CharacterClass::name))
                     .map { charClass -> charClass.name }
 
         val savedCharacterClass = preferences.getString(

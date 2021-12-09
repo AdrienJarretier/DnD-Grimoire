@@ -5,7 +5,7 @@ import androidx.room.*
 
 const val DATABASE_VERSION = 3
 
-@Database(entities = [Spell::class, PlayerClass::class, SpellPlayerClass::class],
+@Database(entities = [Spell::class, CharacterClass::class, SpellCharacterClass::class],
     version = DATABASE_VERSION
 )
 abstract class RoomSingleton : RoomDatabase(){
