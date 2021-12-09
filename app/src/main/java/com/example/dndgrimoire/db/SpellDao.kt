@@ -4,6 +4,7 @@ import androidx.room.*
 import com.example.dndgrimoire.db.entities.CharacterClass
 import com.example.dndgrimoire.db.entities.Spell
 import com.example.dndgrimoire.db.entities.SpellCharacterClass
+import com.example.dndgrimoire.db.relations.CharacterClassWithSpells
 
 @Dao
 interface SpellDao {

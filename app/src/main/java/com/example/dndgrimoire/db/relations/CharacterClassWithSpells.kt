@@ -1,4 +1,4 @@
-package com.example.dndgrimoire.db
+package com.example.dndgrimoire.db.relations
 
 import androidx.room.Embedded
 import androidx.room.Junction
