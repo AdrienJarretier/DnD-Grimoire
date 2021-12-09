@@ -4,8 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "spells_player_classes",
-    primaryKeys = ["spellId", "characterClassId"])
+@Entity(primaryKeys = ["spellId", "characterClassId"])
 data class SpellCharacterClass(
     val spellId: Int,
     val characterClassId: Int

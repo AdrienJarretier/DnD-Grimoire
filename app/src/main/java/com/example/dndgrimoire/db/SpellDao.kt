@@ -7,13 +7,13 @@ interface SpellDao {
     @Query("SELECT * FROM spells")
     fun getAllSpells(): List<Spell>
 
-    @Query("SELECT * FROM player_classes")
+    @Query("SELECT * FROM CharacterClass")
     fun getAllCharacterClasses(): List<CharacterClass>
 
     @Query("SELECT * FROM spells WHERE spellId= :id")
     fun getSpell(id: Int): Spell
 
-    @Query("SELECT * FROM player_classes WHERE characterClassId= :id")
+    @Query("SELECT * FROM CharacterClass WHERE characterClassId= :id")
     fun getCharacterClass(id: Int): CharacterClass
 
     @Query("SELECT count(*)==0 FROM spells")
@@ -25,16 +25,16 @@ interface SpellDao {
     @Query("SELECT * FROM spells WHERE spell_name LIKE :name LIMIT 1")
     fun findSpellByName(name: String): Spell
 
-    @Query("SELECT * FROM player_classes WHERE name LIKE :name LIMIT 1")
+    @Query("SELECT * FROM CharacterClass WHERE name LIKE :name LIMIT 1")
     fun findCharacterClassByName(name: String): CharacterClass
 
     @Transaction
-    @Query("SELECT * FROM player_classes where name LIKE :characterClassName")
+    @Query("SELECT * FROM CharacterClass where name LIKE :characterClassName")
     fun getSpellsForCharacterClass(characterClassName: String): CharacterClassWithSpells
 
 
     @Transaction
-    @Query("SELECT * FROM player_classes")
+    @Query("SELECT * FROM CharacterClass")
     fun getCharacterClassesWithSpells(): List<CharacterClassWithSpells>
 
 //    @Insert

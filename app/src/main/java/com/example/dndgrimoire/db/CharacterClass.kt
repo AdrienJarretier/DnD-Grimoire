@@ -3,7 +3,7 @@ package com.example.dndgrimoire.db
 import androidx.room.*
 import com.example.dndgrimoire.strings.*
 
-@Entity(tableName = "player_classes", indices = [Index(value = ["name"],
+@Entity(indices = [Index(value = ["name"],
     unique = true)])
 data class CharacterClass
 
