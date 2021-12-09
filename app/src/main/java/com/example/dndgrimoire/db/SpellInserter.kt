@@ -2,6 +2,7 @@ package com.example.dndgrimoire.db
 
 import android.database.sqlite.SQLiteConstraintException
 import android.util.Log
+import com.example.dndgrimoire.db.entities.Spell
 
 class SpellInserter(val spellDao: SpellDao) {
 

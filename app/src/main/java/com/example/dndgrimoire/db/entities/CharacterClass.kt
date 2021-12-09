@@ -1,4 +1,4 @@
-package com.example.dndgrimoire.db
+package com.example.dndgrimoire.db.entities
 
 import androidx.room.*
 import com.example.dndgrimoire.strings.*

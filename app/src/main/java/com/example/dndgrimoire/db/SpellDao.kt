@@ -1,6 +1,9 @@
 package com.example.dndgrimoire.db
 
 import androidx.room.*
+import com.example.dndgrimoire.db.entities.CharacterClass
+import com.example.dndgrimoire.db.entities.Spell
+import com.example.dndgrimoire.db.entities.SpellCharacterClass
 
 @Dao
 interface SpellDao {

@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.dndgrimoire.db.RoomSingleton
-import com.example.dndgrimoire.db.Spell
+import com.example.dndgrimoire.db.entities.Spell
 
 
 // TODO: Rename parameter arguments, choose names that match

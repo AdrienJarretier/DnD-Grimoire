@@ -2,6 +2,9 @@ package com.example.dndgrimoire.db
 
 import android.content.Context
 import androidx.room.*
+import com.example.dndgrimoire.db.entities.CharacterClass
+import com.example.dndgrimoire.db.entities.Spell
+import com.example.dndgrimoire.db.entities.SpellCharacterClass
 
 const val DATABASE_VERSION = 5
 

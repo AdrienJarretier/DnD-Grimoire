@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
-import com.example.dndgrimoire.db.CharacterClass
+import com.example.dndgrimoire.db.entities.CharacterClass
 import com.example.dndgrimoire.db.RoomSingleton
 import java.lang.NumberFormatException
 
