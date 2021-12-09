@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 testInserter.insertSpells(
                     resources.openRawResource(R.raw.test_spells)
                 )
-                testInserter.insertPlayerClassesWithSpells(
+                testInserter.insertCharacterClassesWithSpells(
                     resources.openRawResource(R.raw.test_spells_with_class)
                 )
             } catch (e: SpellInserter.UniqueConstraintException) {

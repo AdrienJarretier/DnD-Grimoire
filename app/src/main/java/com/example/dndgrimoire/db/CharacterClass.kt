@@ -9,8 +9,8 @@ data class CharacterClass
 
     @Ignore
     constructor(
-    @PrimaryKey(autoGenerate = true) var playerClassId: Int?,
-    @ColumnInfo val name: String
+        @PrimaryKey(autoGenerate = true) var characterClassId: Int?,
+        @ColumnInfo val name: String
 ){
     constructor(name: String)
             :this(null, capitalize(name))

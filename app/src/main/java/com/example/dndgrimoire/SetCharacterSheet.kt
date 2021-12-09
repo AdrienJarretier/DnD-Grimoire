@@ -25,10 +25,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SetPlayerSheet.newInstance] factory method to
+ * Use the [SetCharacterSheet.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SetPlayerSheet : Fragment() {
+class SetCharacterSheet : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -47,7 +47,7 @@ class SetPlayerSheet : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val rootView = inflater.inflate(R.layout.fragment_set_player_sheet, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_set_character_sheet, container, false)
 
         val db = RoomSingleton.getInstance(requireContext())
         val spellDao = db.spellDao()
@@ -199,12 +199,12 @@ class SetPlayerSheet : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment SetPlayerSheet.
+         * @return A new instance of fragment SetCharacterSheet.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SetPlayerSheet().apply {
+            SetCharacterSheet().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

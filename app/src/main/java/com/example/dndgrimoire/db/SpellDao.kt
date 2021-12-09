@@ -13,8 +13,8 @@ interface SpellDao {
     @Query("SELECT * FROM spells WHERE spellId= :id")
     fun getSpell(id: Int): Spell
 
-    @Query("SELECT * FROM player_classes WHERE playerClassId= :id")
-    fun getPlayerClass(id: Int): CharacterClass
+    @Query("SELECT * FROM player_classes WHERE characterClassId= :id")
+    fun getCharacterClass(id: Int): CharacterClass
 
     @Query("SELECT count(*)==0 FROM spells")
     fun isEmpty(): Boolean
@@ -26,7 +26,7 @@ interface SpellDao {
     fun findSpellByName(name: String): Spell
 
     @Query("SELECT * FROM player_classes WHERE name LIKE :name LIMIT 1")
-    fun findPlayerClassByName(name: String): CharacterClass
+    fun findCharacterClassByName(name: String): CharacterClass
 
     @Transaction
     @Query("SELECT * FROM player_classes where name LIKE :characterClassName")
@@ -35,7 +35,7 @@ interface SpellDao {
 
     @Transaction
     @Query("SELECT * FROM player_classes")
-    fun getPlayerClassesWithSpells(): List<CharacterClassWithSpells>
+    fun getCharacterClassesWithSpells(): List<CharacterClassWithSpells>
 
 //    @Insert
 //    fun insertAll(vararg spells: Spell)
@@ -53,11 +53,11 @@ interface SpellDao {
     @Insert
     fun insert(spells_characterClasses: SpellCharacterClass)
 
-    fun insert(playerClassName: String, spellsNames: List<String>) {
+    fun insert(characterClassName: String, spellsNames: List<String>) {
 
-        var playerClass = findPlayerClassByName(playerClassName)
-        if (playerClass == null) {
-            playerClass = getPlayerClass(insert(CharacterClass(playerClassName)).toInt())
+        var characterClass = findCharacterClassByName(characterClassName)
+        if (characterClass == null) {
+            characterClass = getCharacterClass(insert(CharacterClass(characterClassName)).toInt())
         }
         for (spellName in spellsNames) {
 
@@ -65,12 +65,12 @@ interface SpellDao {
             if (spell == null) {
                 spell = getSpell(insert(Spell(spellName)).toInt())
             }
-            insert(SpellCharacterClass(spell.spellId!!, playerClass.playerClassId!!))
+            insert(SpellCharacterClass(spell.spellId!!, characterClass.characterClassId!!))
         }
     }
 
-    fun insertCharacterClassNameWithSpell(playerClassName: String, spellName: String) {
-        insert(playerClassName, listOf(spellName))
+    fun insertCharacterClassNameWithSpell(characterClassName: String, spellName: String) {
+        insert(characterClassName, listOf(spellName))
     }
 
     @Update

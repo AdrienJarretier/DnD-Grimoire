@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="PlayerClassNameSeparator" parent="TextAppearance.AppCompat">
+    <style name="CharacterClassNameSeparator" parent="TextAppearance.AppCompat">
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">#b45a4e</item>
     </style>

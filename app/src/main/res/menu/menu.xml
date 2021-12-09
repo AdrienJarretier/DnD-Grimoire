@@ -5,6 +5,6 @@
         android:id="@+id/spells"
         android:title="Sorts" />
     <item
-        android:id="@+id/setPlayerSheet2"
+        android:id="@+id/setCharacterSheet2"
         android:title="Personnage" />
 </menu>

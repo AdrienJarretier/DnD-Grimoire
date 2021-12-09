@@ -6,10 +6,10 @@
     app:startDestination="@id/spells">
 
     <fragment
-        android:id="@+id/setPlayerSheet2"
-        android:name="com.example.dndgrimoire.SetPlayerSheet"
-        android:label="fragment_set_player_sheet"
-        tools:layout="@layout/fragment_set_player_sheet" />
+        android:id="@+id/setCharacterSheet2"
+        android:name="com.example.dndgrimoire.SetCharacterSheet"
+        android:label="fragment_set_character_sheet"
+        tools:layout="@layout/fragment_set_character_sheet" />
     <fragment
         android:id="@+id/spells"
         android:name="com.example.dndgrimoire.Spells"

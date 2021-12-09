@@ -26,9 +26,9 @@ class SpellInserter(val spellDao: SpellDao) {
         }
     }
 
-    fun insert(playerClassName: String, spellsNames: List<String>) {
+    fun insert(characterClassName: String, spellsNames: List<String>) {
 
-        spellDao.insert(playerClassName, spellsNames)
+        spellDao.insert(characterClassName, spellsNames)
     }
 
     fun insertAll(vararg spells: Spell) {

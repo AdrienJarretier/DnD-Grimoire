@@ -7,7 +7,7 @@ import androidx.room.Relation
 data class CharacterClassWithSpells(
     @Embedded val characterClass: CharacterClass,
     @Relation(
-        parentColumn = "playerClassId",
+        parentColumn = "characterClassId",
         entityColumn = "spellId",
         associateBy = Junction(SpellCharacterClass::class)
     )
