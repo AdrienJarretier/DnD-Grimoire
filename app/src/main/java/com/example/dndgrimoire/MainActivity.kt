@@ -28,11 +28,11 @@ class MainActivity : AppCompatActivity() {
             Log.d("isEmpty", "true")
 
             try {
-                val testInserter = TestInsert3(spellDao)
+                val testInserter = TestInsertFromCSV(spellDao)
                 testInserter.insertSpells(
                     resources.openRawResource(R.raw.test_spells)
                 )
-                testInserter.insertPlayerClassesWithSpells(
+                testInserter.insertCharacterClassesWithSpells(
                     resources.openRawResource(R.raw.test_spells_with_class)
                 )
             } catch (e: SpellInserter.UniqueConstraintException) {
